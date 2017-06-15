@@ -14,4 +14,6 @@ optional arguments:
 
 
 
-Compile the .py code with your host included using 
+Compile the .py code with your host included using the following command: (may require installation)
+
+pyinstaller.exe SCLogs.py --onefile
