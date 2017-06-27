@@ -1,13 +1,9 @@
 import SCTools
 import securitycenter, getpass
 
-# Prints a report for SecurityCenter assets that don't have a group. Since
-# these assets don't have a group, they probably aren't getting scanned.
+HOST = "netvuln.wvu.edu" 
 
-HOST = "netvuln.wvu.edu"
-
-# define exceptions here. If the condition is true, the asset is not added to
-# the report.
+# define exceptions here 
 def exception( asset ):
     return ( "zzzz" in asset["name"].lower() ) or \
            ( asset["type"] != "static" )
@@ -20,7 +16,7 @@ def run( session, data = None ):
         asset_list = SCTools.get_assets( session, usable=False )
     else:
         asset_list = data["assets"]
-
+        
     # variables
     longest = 0
     assets_without_groups = list()
@@ -30,7 +26,7 @@ def run( session, data = None ):
 
     for asset in data:
         if asset["name"] == "test delete": print asset["name"]
-
+        
         # pull list of group names for each asset
         groups = list( map( lambda group: group["name"], asset["groups"] ) )
         # check the length of the shared groups
@@ -48,7 +44,7 @@ def run( session, data = None ):
             print table_out.format( asset["name"], asset["tags"] )
     else:
         print "all assets have groups!"
-    print "\n\n"
+    print "\n\n"        
 
 
 if __name__ == "__main__":

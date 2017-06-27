@@ -1,7 +1,5 @@
 import os, re
 
-
-# enables all python files in this directory to be imported.
 files = os.listdir( os.path.dirname(__file__) )
 files = list(filter( lambda f: re.search(".*\.py$", f ), files ) )
 files.remove("__init__.py")

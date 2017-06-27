@@ -4,9 +4,6 @@ import securitycenter, getpass
 
 HOST = "netvuln.wvu.edu"
 
-# Looks for runtime errors and partials for scans. SecurityCenter doesn't
-# report the time of error vary well, so this is particularly useful.
-
 def pull_status( status_type, data ):
     list_out = list()
     for line in data:
@@ -23,14 +20,17 @@ def pull_partials( data ):
 def date( timestamp ):
     return datetime.fromtimestamp( timestamp ).strftime( "%H:%M %m-%d-%Y" )
 
+
+
 def run( session, data=None ):
+
     if not data:
         # grab data if not defined
         results = SCTools.get_scan_results( session )
     else:
         results = data["scan results"]
 
-
+        
     # errors
     longest = 0
     for line in pull_errors( results ):
@@ -63,3 +63,4 @@ if __name__ == "__main__":
     session.login( raw_input("username: "), getpass.getpass() )
     run( session )
     raw_input(" [ Hit enter to kill ] " )
+    

@@ -3,8 +3,7 @@ import SCTools
 
 HOST = "netvuln.wvu.edu"
 
-# exceptions for assets that shouldnt be in scans go here. if the condition is
-# true, the asset is not added to the list of not being in a scan. 
+# exceptions for assets that shouldnt be in scans go here
 def scan_exception( asset ):
     return ( asset["type"] == "dynamic" ) or \
            ( asset["type"] == "combination" ) or \
