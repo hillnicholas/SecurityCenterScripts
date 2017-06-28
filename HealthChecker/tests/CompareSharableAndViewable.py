@@ -21,6 +21,8 @@ def compare( group_name, list1, list2):
 
     data_dict = dict()
     data_dict["name"] = group_name
+    not_in_list1.sort()
+    not_in_list2.sort()
     data_dict["not in available"] = not_in_list1
     data_dict["not in accessible"] = not_in_list2
     return data_dict 

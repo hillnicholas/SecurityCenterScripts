@@ -12,6 +12,8 @@ print "\nBeginning Health check...\n"
 
 data = SCTools.get_all( session, verbose = True )
 
+CheckForAssetsInMultipleScans.run( session, data = data )
+
 CheckForBadScans.run( session, data=data )
 
 CompareSharableAndViewable.run( session, data=data)

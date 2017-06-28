@@ -57,7 +57,7 @@ def run( session, data = None):
     print "=====================| assets that aren't in scans |=====================\n"
     if len( not_scanned_assets ) > 0:
         print table_out.format("Asset name", "Group")
-        print table_out.format("----------", "---")
+        print table_out.format("----------", "-----")
         for asset in not_scanned_assets:
             print table_out.format( asset["name"],
                                     "|".join(list(map( lambda group: group["name"], asset["groups"]))) )
