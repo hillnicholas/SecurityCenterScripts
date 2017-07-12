@@ -48,7 +48,7 @@ def run( session, data=None ):
                 data_list.append( comparison )
 
     # print the data to the console
-    print "================| Compare Viewable and Accessible |================\n"
+    print "================| Compare Available and Accessible |================\n"
     if len( data_list ) == 0:
         print "\nall assets match!\n"
     for row in data_list:

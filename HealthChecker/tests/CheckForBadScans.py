@@ -3,15 +3,7 @@ import securitycenter, getpass
 
 HOST = "netvuln.wvu.edu"
 
-# checks the scan statuses
-def run( session, data=None ):
-    if not data:
-        scans = SCTools.get_scans( session )
-    else:
-        scans = data["scans"]
-        
-    bad_scans = list() 
-    longest = 0
+def get_scan_status( scan_status ):
     status = dict()
     status["0"] = "Active"
     status["1"] = "Disabled"
@@ -23,6 +15,23 @@ def run( session, data=None ):
     status["64"] = "Invalid LCE"
     status["128"] = "Invalid Audit File"
     status["256"] = "Invalid Query"
+
+    if scan_status not in status.keys():
+        return "unknown"
+    else:
+        return status[ scan_status ]
+
+    
+# checks the scan statuses
+def run( session, data=None ):
+    if not data:
+        scans = SCTools.get_scans( session )
+    else:
+        scans = data["scans"]
+        
+    bad_scans = list() 
+    longest = 0
+
     ##### to be completed #####
     # filter and get table parameters
     for scan in scans:
@@ -35,7 +44,7 @@ def run( session, data=None ):
     print table_out.format( "Scan name", "Error code" )
     print table_out.format( "---------", "----------" )
     for scan in bad_scans: 
-        print table_out.format( scan["name"], status[ scan["status"] ] )
+        print table_out.format( scan["name"], get_scan_status( scan["status"] ) )
     print "\n\n"
 
 

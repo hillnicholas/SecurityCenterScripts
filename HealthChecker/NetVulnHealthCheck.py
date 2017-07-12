@@ -16,7 +16,7 @@ CheckForAssetsInMultipleScans.run( session, data = data )
 
 CheckForBadScans.run( session, data=data )
 
-CompareSharableAndViewable.run( session, data=data)
+CompareViewableAndAccessible.run( session, data=data)
 
 CheckForAssetsWithoutGroups.run( session, data=data)
 
