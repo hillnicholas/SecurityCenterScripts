@@ -6,7 +6,8 @@ HOST = "netvuln.wvu.edu"
 # define exceptions here 
 def exception( asset ):
     return ( "zzzz" in asset["name"].lower() ) or \
-           ( asset["type"] != "static" )
+           ( asset["type"] != "static" ) or \
+            ( asset["owner"]["username"] != "WVU" )
 
 
 def run( session, data = None ):

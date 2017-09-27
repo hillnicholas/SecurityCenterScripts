@@ -8,6 +8,7 @@ def scan_exception( asset ):
     return ( asset["type"] == "dynamic" ) or \
            ( asset["type"] == "combination" ) or \
            ( asset["tags"] == "wireless" ) or \
+           ( asset["owner"]["username"] != "WVU" ) or \
            ( "ZZZZ" in asset["name"] ) or \
            ( "HSC (Reserved) NATTED" in asset["name"] ) or \
            ( "ZZZZ" in asset["name"] ) or \
@@ -15,7 +16,7 @@ def scan_exception( asset ):
            ( "NSX" in asset["name"] ) or \
            ( "HSCNAT" in asset["name"] ) or \
            ( "OPEN" in asset["name"] ) or \
-           ( "All Defined Ranges" in asset["name"] )
+           ( "All Defined Ranges" in asset["name"] )           
 
 
 
@@ -73,4 +74,5 @@ if __name__ == "__main__":
     session = securitycenter.SecurityCenter5( HOST )
     session.login(raw_input("username: "), getpass.getpass("password: ") )
     run( session )
+    data = SCTools.get_assets( session )
     raw_input(" [ Hit enter to kill ] ")

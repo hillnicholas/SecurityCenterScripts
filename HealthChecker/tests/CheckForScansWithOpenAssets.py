@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import SCTools, securitycenter, getpass
+import SCTools, securitycenter, getpass, re
 
 
 HOST = "netvuln.wvu.edu"
@@ -15,48 +15,40 @@ def scan_exception( scan ):
 
 
 
-def look_up_groups( asset_name, asset_data ):
-    for asset in asset_data:
-        if asset["name"] == asset_name:
-            return list( map( lambda group: str( group["name"] ), asset["groups"] ) )
-        
 def run( session, data = None ):
 
     # create the variables based on whether they were given as a parameter
     if not data:
-        asset_data = SCTools.get_assets( session , usable=False )
         scan_data = SCTools.get_scans( session )
     else:
-        asset_data = data["assets"]
         scan_data = data["scans"]
 
     print "DEBUG: finished pulling data from SecurityCenter"
-    
-    # start with 0 for each asset
-    asset_list = dict()
-    for asset in asset_data:
-        asset_list[ asset["name"] ] = list()
 
-
+    '''
     for scan in scan_data:
-        if not scan_exception( scan ):
-            for asset in scan["assets"]:
-                name = asset["name"]
-                asset_list[name].append( scan["name"] )
+        assets = scan["assets"]
+        asset_list = list( map( lambda a: a["name"], assets ) )
+    '''
 
-    print "=========| assets in multiple scans |=========="
-    for asset_name in asset_list.keys():
-        scan_list_for_asset = asset_list[ asset_name ]
-        if len( scan_list_for_asset ) > 1:
-            print asset_name, str( look_up_groups( asset_name, asset_data ) ) 
-            for scan_name in scan_list_for_asset:
-                print "\t",scan_name
-            print
-    print "\n\n"
+    scans_with_opens = dict()
+    for scan in scan_data:
+        #scan = scan_data[47]
+        assets = scan["assets"]
+        #print scan["name"],"\n",map( lambda a: a["name"].encode("utf-8"), assets )
+        open_assets = filter( lambda a_name: bool( re.match( "open", a_name.lower() ) ), map( lambda a: a["name"].encode("utf-8"), assets ) )
+        if len(open_assets) != 0:
+            scans_with_opens[ scan["name"] ] = open_assets
 
+    print "==========| Scans with open ranges |============"
+    for scan_name in scans_with_opens.keys():
+        print "\n",scan_name
+        for asset in scans_with_opens[ scan_name ]:
+            print "\t",asset
+    print "\n"
     
     '''
-    print "======== tmp ============"
+
     for asset_name in asset_list.keys():
         scan_list_for_asset = asset_list[ asset_name ]
         if len( scan_list_for_asset ) > 1:
@@ -80,3 +72,20 @@ if __name__ == "__main__":
     dbug = run( session )#, data = data )
     raw_input(" [ Hit enter to kill ] ")
     
+    scan_data = dbug
+    '''
+    scans_with_opens = dict()
+    for scan in scan_data:
+        #scan = scan_data[47]
+        assets = scan["assets"]
+        #print scan["name"],"\n",map( lambda a: a["name"].encode("utf-8"), assets )
+        open_assets = filter( lambda a_name: bool( re.match( "open", a_name.lower() ) ), map( lambda a: a["name"].encode("utf-8"), assets ) )
+        if len(open_assets) != 0:
+            scans_with_opens[ scan["name"] ] = open_assets
+
+    print "==========| Scans with open ranges |============"
+    for scan_name in scans_with_opens.keys():
+        print "\n",scan_name
+        for asset in scans_with_opens[ scan_name ]:
+            print "\t",asset
+    '''

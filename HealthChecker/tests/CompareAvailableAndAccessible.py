@@ -40,7 +40,8 @@ def run( session, data=None ):
         groups = data["groups"]
     data_list = list()
     for group in groups:
-        if group["name"] != "Full Access":
+        if group["name"] != "Full Access" or \
+           group["name"] != "WVU":
             # compare each row
             
             comparison = compare( str(group["name"]), pull_names( group["assets"] ), pull_names( group["definingAssets"] ) )
