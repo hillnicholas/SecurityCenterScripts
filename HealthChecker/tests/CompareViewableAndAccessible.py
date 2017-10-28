@@ -5,7 +5,7 @@ import securitycenter, getpass
 # compares sharable and viewable IPs of all assets within a logged in group.
 
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 # compares 2 pipe separated lists.
 def compare( group_name, list1, list2): 
     # split the lists
