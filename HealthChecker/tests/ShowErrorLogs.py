@@ -1,7 +1,7 @@
 import SCTools, getpass
 import securitycenter
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 
 
