@@ -2,7 +2,7 @@ import SCTools
 from datetime import datetime
 import securitycenter, getpass
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 def pull_status( status_type, data ):
     list_out = list()
