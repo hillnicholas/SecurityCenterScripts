@@ -2,7 +2,7 @@
 import SCTools, securitycenter, getpass
 
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 # returns true if the exception exists
 def exception( asset ):
