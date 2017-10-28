@@ -2,7 +2,7 @@ import securitycenter, getpass
 from tests import *
 
 # log in
-HOST = "netvuln.wvu.edu"
+HOST = ""
 session = securitycenter.SecurityCenter5( HOST )
 session.login( raw_input("username: "), getpass.getpass() )
 
