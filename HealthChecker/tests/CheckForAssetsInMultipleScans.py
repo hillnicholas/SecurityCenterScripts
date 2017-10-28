@@ -2,7 +2,7 @@
 import SCTools, securitycenter, getpass
 
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 
 # returns true if theres an exception and a scan shouldnt be counted if theres
@@ -11,7 +11,6 @@ def scan_exception( scan ):
     return ( scan["schedule"]["repeatRule"] == "" ) or \
            ( "Authenticated" in scan["policy"]["name"] ) or \
            ( "discovery" in scan["name"].lower() )# or \
-            #( "ITS-SUPPORT" in scan["name"] ) # temporary
 
 
 
@@ -59,16 +58,6 @@ def run( session, data = None ):
             if "AI" in look_up_groups( asset_name, asset_data)  and \
                "ITS - SUPPORT" in look_up_groups( asset_name, asset_data ):
                 print asset_name
-    '''
-    # remove unnecessary junk, keep name and asset list only
-    scan_list = dict()
-    for scan in scan_data:
-        scan_list[ scan["name" ] ] = 
-    '''
-
-    
-
-
 
 if __name__ == "__main__":
     session = securitycenter.SecurityCenter5( HOST )
