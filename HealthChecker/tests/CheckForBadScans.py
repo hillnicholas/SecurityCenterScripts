@@ -1,7 +1,7 @@
 import SCTools
 import securitycenter, getpass
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 def get_scan_status( scan_status ):
     status = dict()
