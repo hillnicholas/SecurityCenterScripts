@@ -1,20 +1,12 @@
 import securitycenter, getpass
 import SCTools
 
-HOST = "netvuln.wvu.edu"
+HOST = ""
 
 # exceptions for assets that shouldnt be in scans go here
 def scan_exception( asset ):
     return ( asset["type"] == "dynamic" ) or \
            ( asset["type"] == "combination" ) or \
-           ( asset["tags"] == "wireless" ) or \
-           ( "ZZZZ" in asset["name"] ) or \
-           ( "HSC (Reserved) NATTED" in asset["name"] ) or \
-           ( "ZZZZ" in asset["name"] ) or \
-           ( "TEC - RHNet" in asset["name"] ) or \
-           ( "NSX" in asset["name"] ) or \
-           ( "HSCNAT" in asset["name"] ) or \
-           ( "OPEN" in asset["name"] ) or \
            ( "All Defined Ranges" in asset["name"] )
 
 
