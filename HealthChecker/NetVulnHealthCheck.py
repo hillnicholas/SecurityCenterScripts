@@ -1,9 +1,10 @@
-import securitycenter, getpass
+import securitycenter, getpass, sys
 from tests import *
 
 # log in
-HOST = ""
+HOST = raw_input("Host: ") if len(sys.argv) < 2 else sys.argv[1]
 session = securitycenter.SecurityCenter5( HOST )
+
 session.login( raw_input("username: "), getpass.getpass() )
 
 

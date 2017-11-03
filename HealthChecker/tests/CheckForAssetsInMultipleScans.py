@@ -29,7 +29,6 @@ def run( session, data = None ):
         asset_data = data["assets"]
         scan_data = data["scans"]
 
-    print "DEBUG: finished pulling data from SecurityCenter"
     
     # start with 0 for each asset
     asset_list = dict()
@@ -46,18 +45,13 @@ def run( session, data = None ):
     for asset_name in asset_list.keys():
         scan_list_for_asset = asset_list[ asset_name ]
         if len( scan_list_for_asset ) > 1:
-            print asset_name, str( look_up_groups( asset_name, asset_data ) ) 
+            print "Asset name: " + asset_name
+            print "Associated group(s): " + str( look_up_groups( asset_name, asset_data ) ) 
+            print "Associated scans: "
             for scan_name in scan_list_for_asset:
                 print "\t",scan_name
             print
 
-    print "======== tmp ============"
-    for asset_name in asset_list.keys():
-        scan_list_for_asset = asset_list[ asset_name ]
-        if len( scan_list_for_asset ) > 1:
-            if "AI" in look_up_groups( asset_name, asset_data)  and \
-               "ITS - SUPPORT" in look_up_groups( asset_name, asset_data ):
-                print asset_name
 
 if __name__ == "__main__":
     session = securitycenter.SecurityCenter5( HOST )

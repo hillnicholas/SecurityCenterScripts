@@ -2,7 +2,7 @@ import os, subprocess, csv
 import securitycenter, getpass
 import sys
 
-HOST = ""
+HOST = raw_input("Host: ") if len(sys.argv) < 2 else sys.argv[1]
 
 
 # unnecessary fancy stuff

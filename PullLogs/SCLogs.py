@@ -34,6 +34,8 @@ def __export_logs_to_csv( logs, file_name ):
 
 # makes the HTTP POST request for the logs and returns the JSON response
 def get_logs( session, no_of_logs ):
+    year = datetime.datetime.now().strftime("20%y")
+    month = datetime.datetime.now().strftime("%m")
     '''
     # severity IDs:
     # 2 - critical
@@ -83,7 +85,7 @@ def get_logs( session, no_of_logs ):
                                                 "sortDir":"desc",
                                                 "columns":[],
                                                 "type":"scLog",
-                                                "date":201706}
+                                                "date":int(str(year)+str(month))}
                             ).json()["response"]
     logs = response["results"]
     return logs
