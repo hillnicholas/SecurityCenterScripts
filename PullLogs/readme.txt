@@ -1,4 +1,4 @@
-Extract the system logs from NetVuln.
+Extract the system logs from SecurityCenter. 
 
 optional arguments:
   -h, --help            show this help message and exit

@@ -99,7 +99,7 @@ def define_vars():
     no_of_logs = 500
     global host
     
-    parser = argparse.ArgumentParser(description='Extract the system logs from NetVuln.')
+    parser = argparse.ArgumentParser(description='Extract the system logs from SecurityCenter.')
 
     parser.add_argument('-i',"--interactive", action="store_true",
                         help='Use the interactive menu')
