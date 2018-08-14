@@ -2,7 +2,6 @@ import os, subprocess, csv
 import securitycenter, getpass
 import sys
 
-HOST = raw_input("Host: ") if len(sys.argv) < 2 else sys.argv[1]
 
 
 # unnecessary fancy stuff
@@ -127,7 +126,7 @@ def get_asset_vulnerabilities( session):
 '''
 
 # makes the HTTP POST request for the logs and returns the JSON response
-def get_logs( session, no_of_logs=500 ):
+def get_logs( session, datestring, no_of_logs=500 ):
     '''
     # severity IDs:
     # 2 - critical
@@ -160,7 +159,7 @@ def get_logs( session, no_of_logs=500 ):
                                                              "operator":"=",
                                                              "type":"scLog",
                                                              "isPredefined":True,
-                                                             "value":{"id":"201706"}
+                                                             "value":{"id": datestring }
                                                              },
                                                             {"id":"organization",
                                                              "filterName":"organization",
@@ -185,6 +184,7 @@ def get_logs( session, no_of_logs=500 ):
 
 # testing/debug
 if __name__ == "__main__":
+    HOST = raw_input("Host: ") if len(sys.argv) < 2 else sys.argv[1]
     session = securitycenter.SecurityCenter5( HOST )
     session.login(raw_input("username: " ), getpass.getpass() )
     data = get_all( session, verbose=True )

@@ -20,6 +20,7 @@ def look_up_groups( asset_name, asset_data ):
             return list( map( lambda group: str( group["name"] ), asset["groups"] ) )
         
 def run( session, data = None ):
+    print "=======================| Assets in Multiple Scans |=======================\n"
 
     # create the variables based on whether they were given as a parameter
     if not data:

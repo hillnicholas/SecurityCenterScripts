@@ -10,6 +10,8 @@ def exception( asset ):
            #( "zzzz" in asset["name"].lower() )
 
 def run( session, data = None ):
+    print "=======================| Scans without Tags |=======================\n"
+
     # create the variables based on whether they were given as a parameter
     if not data:
         asset_data = SCTools.get_assets( session , usable=False )
